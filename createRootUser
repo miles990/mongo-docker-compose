@@ -1,0 +1,15 @@
+#!/bin/bash
+
+createuser='db.createUser({user:"omg",pwd:"70444999",roles:[{role:"root",db:"admin"}]})'
+
+for (( cfg = 1; cfg <= 3; cfg++ )); do
+  echo "Create root user cfg ${cfg} "
+  docker exec -it mongodockercompose_mongocfg${cfg}_1 bash -c "echo '${createuser}' | mongo admin"
+done
+
+
+for (( rs = 1; rs <= 2; rs++ )); do
+  echo "Create root user rs ${rs} "
+  docker exec -it mongodockercompose_mongors${rs}n1_1 bash -c "echo '${createuser}' | mongo admin"
+done
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+docker exec -it mongodockercompose_mongos1_1 bash -c "echo \"sh.enableSharding('member'); sh.shardCollection('member.account', {'_id': 'hashed'} ); sh.enableSharding('trial-user'); sh.shardCollection('trial-user.account', {'_id': 'hashed'} )\" | mongo admin"
+
