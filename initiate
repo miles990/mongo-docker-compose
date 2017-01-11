@@ -1,28 +1,6 @@
 #!/bin/bash
 
-
-for (( rs = 1; rs <= 2; rs++ )); do
-  echo "Intializing replica ${rs} set"
-  replicate="rs.initiate(); sleep(1000); cfg = rs.conf(); cfg.members[0].host = \"mongodockercompose_mongors${rs}n1_1\"; rs.reconfig(cfg); rs.add(\"mongodockercompose_mongors${rs}n2_1\"); rs.add(\"mongodockercompose_mongors${rs}n3_1\"); rs.status();"
-  docker exec -it mongodockercompose_mongors${rs}n1_1 bash -c "echo '${replicate}' | mongo admin"
-done
-
-sleep 2
-# Add better mechanisum to wait for mongos connectivity to be
-# established by tailing docker log for connection readiness
-
-docker exec -it mongodockercompose_mongos1_1 bash -c "echo \"sh.addShard('mongors1/mongodockercompose_mongors1n1_1:27017'); sh.addShard('mongors2/mongodockercompose_mongors2n1_1:27017');\" | mongo admin"
-
-
-#createuser='db.createUser({user:"omg",pwd:"70444999",roles:[{role:"root",db:"admin"}]})'
-
-#for (( cfg = 1; cfg <= 3; cfg++ )); do
-#  echo "Create root user cfg ${cfg} "
-#  docker exec -it mongodockercompose_mongocfg${cfg}_1 bash -c "echo '${createuser}' | mongo admin"
-#done
-
-#for (( rs = 1; rs <= 2; rs++ )); do
-#  echo "Create root user rs ${rs}"
-#  docker exec -it mongodockercompose_mongors${rs}n1_1 bash -c "echo '${createuser}' | mongo admin"
-#done
-
+./initiate_config_replica_set
+./initiate_shard_replica_set
+./add_shards_to_cluster
+./set_sharding_db_and_collections

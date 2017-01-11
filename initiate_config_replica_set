@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cmd="rs.initiate({_id:\"cfg\",configsvr:true,members:[{_id:0,host:\"mongodockercompose_mongocfg1_1:27017\"},{_id:1,host:\"mongodockercompose_mongocfg2_1:27017\"},{_id:2,host:\"mongodockercompose_mongocfg3_1:27017\"}]})"
+docker exec -it mongodockercompose_mongocfg1_1 bash -c "echo '${cmd}' | mongo admin"

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# enable sharding for database & shard collections
+dbName="member"
+collectionName="account"
+cmd="sh.enableSharding(\"${dbName}\"); sh.shardCollection(\"${dbName}.${collectionName}\", {\"_id\": \"hashed\"})"
+docker exec -it mongodockercompose_mongos1_1 bash -c "echo '${cmd}' | mongo admin"

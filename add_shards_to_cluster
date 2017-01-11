@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# add shard1
+cmd="sh.addShard(\"shard1/mongodockercompose_mongors1n1_1:27017\")"
+docker exec -it mongodockercompose_mongos1_1 bash -c "echo '${cmd}' | mongo admin"
+
+# add shard2
+cmd="sh.addShard(\"shard2/mongodockercompose_mongors2n1_1:27017\")"
+docker exec -it mongodockercompose_mongos1_1 bash -c "echo '${cmd}' | mongo admin"
