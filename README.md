@@ -8,11 +8,14 @@ The MongoDB environment consistes of the following docker containers
  - **mongos(1-2)**: Mongo routing service to connect to the cluster through (1 container)
 
 ### Required
-[Docker](https://www.docker.com/), test version: 1.12.5
+- [Docker](https://www.docker.com/), test version: 1.12.5
+
   ```
     curl -sSL https://get.docker.com/ | sh
   ```
-[Docker Compose](https://docs.docker.com/compose/overview/), test version: 1.9.0
+
+- [Docker Compose](https://docs.docker.com/compose/overview/), test version: 1.9.0
+
   ```
     sudo su
     curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
