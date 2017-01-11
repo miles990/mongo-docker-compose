@@ -1,5 +1,5 @@
 # mongo-docker-compose
-This repoisitory provides a fully sharded mongo environment using docker-compose and local storage.
+Deploy a sharded cluster in mongodb using docker-compose
 
 The MongoDB environment consistes of the following docker containers
 
@@ -7,32 +7,21 @@ The MongoDB environment consistes of the following docker containers
  - **mongocfg(1-3)**: Stores metadata for sharded data distribution (3 containers)
  - **mongos(1-2)**: Mongo routing service to connect to the cluster through (1 container)
 
-## Caveats
-
- - This is designed to have a minimal disk footprint at the cost of durability.
- - This is designed in no way for production but as a cheap learning and exploration vehicle.
-
-## Installation (Debian base):
-
-### Install Docker
-
-    sudo apt-get install -y apparmor lxc cgroup-lite curl
-    wget -qO- https://get.docker.com/ | sh
-    sudo usermod -aG docker YourUserNameHere
-    sudo service docker restart
-
-### Install Docker-compose (1.4.2+)
-
+### Required
+[Docker](https://www.docker.com/), test version: 1.12.5
+  ```
+    curl -sSL https://get.docker.com/ | sh
+  ```
+[Docker Compose](https://docs.docker.com/compose/overview/), test version: 1.9.0
+  ```
     sudo su
-    curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     exit
+  ```
 
-### Check out the repository
-
-    git clone git@github.com:singram/mongo-docker-compose.git
-    cd mongo-docker-compose
-
+### MongoDB Version
+3.4
 
 ### Setup Cluster
 This will pull all the images from [Docker index](https://index.docker.io/u/jacksoncage/mongo/) and run all the containers.
