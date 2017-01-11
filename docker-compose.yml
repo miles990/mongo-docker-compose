@@ -4,72 +4,72 @@ services:
   mongors1n1:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard1 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors1n1:/data/db
+      - ./data/mongors1n1:/data/db
   mongors1n2:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard1 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors1n2:/data/db
+      - ./data/mongors1n2:/data/db
   mongors1n3:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard1 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors1n3:/data/db
+      - ./data/mongors1n3:/data/db
   mongors2n1:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard2 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors2n1:/data/db
+      - ./data/mongors2n1:/data/db
   mongors2n2:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard2 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors2n2:/data/db
+      - ./data/mongors2n2:/data/db
   mongors2n3:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --shardsvr --replSet shard2 --dbpath /data/db --journal --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongors2n3:/data/db
+      - ./data/mongors2n3:/data/db
   mongocfg1:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --replSet cfg --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongo-cfg-1:/data/db
+      - ./data/mongo-cfg-1:/data/db
   mongocfg2:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --replSet cfg --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongo-cfg-2:/data/db
+      - ./data/mongo-cfg-2:/data/db
   mongocfg3:
     image: mongo:3.4
     command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --replSet cfg --noauth --port 27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      # - ./data/mongo-cfg-3:/data/db
+      - ./data/mongo-cfg-3:/data/db
   mongos1:
     image: mongo:3.4
     command: mongos --configdb cfg/mongodockercompose_mongocfg1_1:27017,mongodockercompose_mongocfg2_1:27017,mongodockercompose_mongocfg3_1:27017 --port 27017
     ports:
       - 27017:27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
   mongos2:
@@ -77,6 +77,6 @@ services:
     command: mongos --configdb cfg/mongodockercompose_mongocfg1_1:27017,mongodockercompose_mongocfg2_1:27017,mongodockercompose_mongocfg3_1:27017 --port 27017
     ports:
       - 27018:27017
-    # restart: always
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
